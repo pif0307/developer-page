@@ -1,8 +1,37 @@
 <template>
   <div>
-    <div id="alpha-target">
-      <div id="background"></div>
+    <div id="black-background">
+      <div class="d-flex">
+        <div
+          v-for="item in images_one"
+          :key="item.src"
+          id="background-image-parent-one"
+        >
+          <v-img
+            :src="item.src"
+            :lazy-src="item.src"
+            width="100vh"
+            height="50vh"
+          />
+        </div>
+      </div>
+      <div class="d-flex">
+        <div
+          v-for="item in images_two"
+          :key="item.src"
+          id="background-image-parent-two"
+        >
+          <v-img
+            :src="item.src"
+            :lazy-src="item.src"
+            width="100vh"
+            height="50vh"
+          />
+        </div>
+      </div>
     </div>
+
+    <div id="opacity-background"></div>
 
     <div
       class="content d-flex align-center justify-center flex-column"
@@ -77,6 +106,54 @@ export default {
         "Start",
         "Trust",
       ],
+
+      images_one: [
+        {
+          src: "https://images.pexels.com/photos/2246476/pexels-photo-2246476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        },
+        {
+          src: "https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg",
+        },
+        {
+          src: "https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        },
+        {
+          src: "https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        },
+        {
+          src: "https://images.pexels.com/photos/2246476/pexels-photo-2246476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        },
+        {
+          src: "https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg",
+        },
+        {
+          src: "https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        },
+      ],
+
+      images_two: [
+        {
+          src: "https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        },
+        {
+          src: "https://images.pexels.com/photos/1408221/pexels-photo-1408221.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        },
+        {
+          src: "https://images.pexels.com/photos/3075993/pexels-photo-3075993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        },
+        {
+          src: "https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        },
+        {
+          src: "https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        },
+        {
+          src: "https://images.pexels.com/photos/1408221/pexels-photo-1408221.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        },
+        {
+          src: "https://images.pexels.com/photos/3075993/pexels-photo-3075993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        },
+      ],
     };
   },
 
@@ -95,7 +172,7 @@ export default {
 
 <style>
 .content > div {
-  z-index: 1;
+  z-index: 2;
 }
 
 #anim-text-parent {
@@ -105,15 +182,15 @@ export default {
 }
 
 #anim-text-text {
-  transform: translateY(-1500px);
+  transform: translateY(-800px);
 
-  animation: anim-text-position-keyframes 5s;
+  animation: anim-text-position-keyframes 3s;
   animation-fill-mode: forwards;
 }
 
 @keyframes anim-text-position-keyframes {
   from {
-    transform: translateY(-1400px);
+    transform: translateY(-800px);
   } /* 애니메이션 높이 */
   to {
     transform: translateY(0);
@@ -127,15 +204,15 @@ export default {
 }
 
 #anim-text-en-text {
-  transform: translateY(-750px);
+  transform: translateY(-400px);
 
-  animation: anim-text-en-position-keyframes 5s;
+  animation: anim-text-en-position-keyframes 3s;
   animation-fill-mode: forwards;
 }
 
 @keyframes anim-text-en-position-keyframes {
   from {
-    transform: translateY(-650px);
+    transform: translateY(-360px);
   } /* 애니메이션 높이 */
   to {
     transform: translateY(0);
@@ -145,7 +222,7 @@ export default {
 #alpha-target {
   animation: 3s circle ease-out;
   animation-fill-mode: forwards;
-  animation-delay: 0.5s;
+  animation-delay: 5s;
 
   position: fixed;
   -webkit-clip-path: circle(0%);
@@ -167,12 +244,22 @@ export default {
     clip-path: circle(10%);
   }
   100% {
-    -webkit-clip-path: circle(510%);
+    -webkit-clip-path: circle(150%);
     clip-path: circle(150%);
   }
 }
 
 #background {
+  z-index: 1;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+#black-background {
   z-index: 0;
   position: fixed;
   top: 0px;
@@ -180,5 +267,46 @@ export default {
   width: 100%;
   height: 100%;
   background-color: black;
+}
+
+#background-image-parent-one {
+  animation: background-image-animation-one 120s infinite linear;
+}
+
+@keyframes background-image-animation-one {
+  0% {
+    transform: translateX(-20%);
+  }
+  100% {
+    transform: translateX(-420%);
+  }
+}
+
+#background-image-parent-two {
+  animation: background-image-animation-two 120s infinite linear;
+}
+
+@keyframes background-image-animation-two {
+  0% {
+    transform: translateX(-440%);
+  }
+  100% {
+    transform: translateX(-40%);
+  }
+}
+
+#opacity-background {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.4) 20%,
+    rgba(0, 0, 0, 0.4) 80%,
+    rgba(0, 0, 0, 1) 100%
+  );
 }
 </style>
