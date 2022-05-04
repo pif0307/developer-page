@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div id="black-background">
+    <div id="black-background" />
+    <div id="background">
       <div class="d-flex">
         <div
           v-for="item in images_one"
@@ -166,6 +167,8 @@ export default {
 
   mounted() {
     document.addEventListener("scroll", this.onScroll);
+
+    this.$vuetify.theme.dark = true;
   },
 };
 </script>
@@ -250,8 +253,8 @@ export default {
 }
 
 #background {
-  z-index: 1;
-  position: fixed;
+  z-index: 0;
+  position: absolute;
   top: 0px;
   left: 0px;
   width: 100%;
@@ -299,14 +302,14 @@ export default {
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 100%;
-  position: fixed;
+  height: 100vh;
+  position: absolute;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.4) 20%,
-    rgba(0, 0, 0, 0.4) 80%,
-    rgba(0, 0, 0, 1) 100%
+    rgba(10, 10, 10, 1) 0%,
+    rgba(10, 10, 10, 0.4) 20%,
+    rgba(10, 10, 10, 0.4) 80%,
+    rgba(10, 10, 10, 1) 100%
   );
 }
 </style>
